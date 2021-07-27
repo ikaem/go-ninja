@@ -1,0 +1,4 @@
+Bill breakdown: 
+coffee:                   ... $3 
+tip:                      ... $4.00
+total:                    ... $7.00

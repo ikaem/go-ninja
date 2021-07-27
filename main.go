@@ -2,31 +2,57 @@ package main
 
 import (
 	"fmt"
-	"sort"
+	"math"
 )
+
+type square struct {
+	length float64
+}
+
+type circle struct {
+	radius float64
+}
+
+type shape interface {
+	area() float64
+	circumf() float64
+}
+
+// square methods
+func (s square) area() float64 {
+	return s.length * s.length
+}
+
+func (s square) circumf() float64 {
+	return s.length * 4
+}
+
+// circle methods
+func (c circle) area() float64 {
+	return math.Pi * c.radius * c.radius
+}
+
+func (c circle) circumf() float64 {
+	return 2 * math.Pi * c.radius
+}
+
+func printShapeInfo(s shape) {
+	fmt.Printf("area of %T is: %0.2f \n", s, s.area())
+	fmt.Printf("circumference of %T is: %0.2f \n", s, s.circumf())
+}
 
 func main() {
 
-	// greeting := "Gello there freinds"
+	shapes := []shape{
+		square{length: 15.2},
+		circle{radius: 11.2},
+		circle{radius: 5.2},
+		square{length: 8.2},
+	}
 
-	// fmt.Println(strings.Contains(greeting, "Gello")) // returns boolean // false
-	// fmt.Println((strings.ReplaceAll(greeting, "Gello", "hello")))
-	// fmt.Println(strings.Index(greeting, "Ge"))
-	// fmt.Println(strings.Split(greeting, " ")) // [Gello there freinds]
-
-	// ages := []int{45, 20, 35, 30, 75, 60, 50, 25}
-	// sort.Ints(ages)
-
-	// fmt.Println(ages)
-
-	// index := sort.SearchInts(ages, 99)
-
-	// fmt.Println("index", index) // 8
-
-	names := []string{"karlo", "ivan", "martina"}
-	sort.Strings(names)
-	fmt.Println(names)
-
-	fmt.Println(sort.SearchStrings(names, "ivan")) // 0
+	for _, v := range shapes {
+		printShapeInfo(v)
+		fmt.Println("----")
+	}
 
 }
